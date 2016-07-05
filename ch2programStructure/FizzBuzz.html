@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript">
+	window.onload = function doIt() {
+	var string = "";
+	for (a = 1; a < 100; a++){
+
+		if (a % 3 == 0 ){
+			string += "Fizz";
+			if ( a % 5 == 0){
+				string += "Buzz";
+			}
+			string += "<br>";
+			continue;
+		} else {
+			if (a % 5 == 0){
+				string += "Buzz" + "<br>";
+				continue;
+			}
+		} 
+		string += a + "<br>";
+	}
+	document.getElementById('change').innerHTML = string;
+	console.log(string);
+	}
+</script>
+	<meta charset="UTF-8">
+	<title>FizzBuzz</title>
+</head>
+<body>
+	<p id="change"></p>
+</body>
+</html>
