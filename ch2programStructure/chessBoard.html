@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript">
+	window.onload = function doIt() {
+	var string = "";
+	var size = 22;
+	for (a = 0; a < size; a++){
+		for (b = 0; b < size; b++){
+			if (a % 2 == 0){
+				if (b % 2 == 0){
+					string += "#";
+					continue;
+				}
+				string += " ";
+				continue;
+			}
+			if (b % 2 == 0){
+				string += " ";
+				continue;
+			}
+			string += "#";
+		}
+		
+		string += "<br>";
+	}
+	document.getElementById('change').innerHTML = string;
+	console.log(string);
+	}
+</script>
+	<meta charset="UTF-8">
+	<title>ChessBoard</title>
+</head>
+<body>
+		<pre id="change"></pre>
+</body>
+</html>
