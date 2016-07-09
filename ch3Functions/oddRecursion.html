@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript">
+function isEven(number) {
+	number %= 2;
+	if (number == 0) {
+		document.getElementById("butt").innerHTML = "even";
+		console.log("even");
+		return true;
+	}
+	else if (number == 1 || number == -1){
+		document.getElementById("butt").innerHTML = "odd";
+		console.log("odd");
+		return false;
+	} else {
+		console.log("recursion");
+		isEven(number);
+		}
+}
+	
+</script>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<input type="text" name="number" id="num">
+	<button onclick="isEven(document.getElementById('num').value)" id = "butt">even or odd</button>
+</body>
+</html>

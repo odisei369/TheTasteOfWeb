@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript">
+function min(a, b) {
+	if (a < b) {
+		document.getElementById("butt").innerHTML = a;
+		return a;
+	}
+	else {
+		document.getElementById("butt").innerHTML = b;
+		return b;
+	};
+}
+	
+</script>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button onclick="min(7, 5)" id = "butt">min(7, 5)</button>
+</body>
+</html>

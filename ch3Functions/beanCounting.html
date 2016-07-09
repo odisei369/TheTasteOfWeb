@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript">
+function countChar(string, char) {
+	var count = 0;
+for (var i = 0; i < string.length; i++) {
+	if (string[i] == char){
+		count ++;
+	}
+}
+document.getElementById('butt').innerHTML = count;
+return count;
+}
+	
+</script>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<input type="text" name="string" id="str">
+<br>
+<input type="text" name="char" id="chr">
+	<button onclick="countChar(document.getElementById('str').value, document.getElementById('chr').value)" id = "butt">count</button>
+</body>
+</html>
