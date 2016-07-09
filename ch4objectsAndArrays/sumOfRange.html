@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript">
+function range(first, last, step) {
+	var count = 0 + first;
+	var array = [];
+	while (count != last){
+		array.push(count);
+		count += step;
+		console.log(count);
+	}
+	return array;
+}
+function sum(array) {
+	var count = 0;
+for (var i = 0; i < array.length; i++) {
+	count += array[i];
+	}
+	document.getElementById('butt').innerHTML = count;
+	return count;
+}
+
+
+	
+</script>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<input type="number" name="firts argument" id="fst">
+<br>
+<input type="number" name="second argument" id="sec">
+<br>
+<input type="number" name="step" id="stp">
+	<button onclick="sum(range(parseFloat(document.getElementById('fst').value),
+	parseFloat(document.getElementById('sec').value), 
+	parseFloat(document.getElementById('stp').value)))" id = "butt">count</buttSon>
+</body>
+</html>
