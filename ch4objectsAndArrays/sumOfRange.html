@@ -3,12 +3,27 @@
 <head>
 <script type="text/javascript">
 function range(first, last, step) {
-	var count = 0 + first;
+	var count = 0;
+	var buf = 0;
+	if (step < 0){
+		step = -step;
+	}
+	if (first < last){
+		count = first;
+		buf = last;
+	}
+	else{
+		count = last;
+		buf = first;
+	}
+	console.log(typeof step);
+	console.log(step);
+	
 	var array = [];
-	while (count != last){
-		array.push(count);
+	while (count < buf){
+		array.push(count.toFixed(2));
 		count += step;
-		console.log(count);
+		console.log(count.toFixed(2));
 	}
 	return array;
 }
@@ -17,7 +32,7 @@ function sum(array) {
 for (var i = 0; i < array.length; i++) {
 	count += array[i];
 	}
-	document.getElementById('butt').innerHTML = count;
+	document.getElementById('butt').innerHTML = array;
 	return count;
 }
 

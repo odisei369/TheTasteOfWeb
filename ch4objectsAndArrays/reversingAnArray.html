@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript">
+function reverseArray(text){
+	var array = text.split(" ");
+	var lenghtOfArray = array.length;
+	console.log(array);
+	console.log(array.length);
+	var secondArray = [];
+	for (var i = 0; i < lenghtOfArray; i++){
+		secondArray.push(array.pop());
+		console.log("array :" + array);
+		console.log("sec array :" + secondArray);
+	}
+	document.getElementById('butt').innerHTML = secondArray;
+	return secondArray;
+}
+function reverseArrayInHold(text){
+	var array = text.split(" ");
+	var buff;
+	var lenghtOfArray = array.length;
+	for (var i = 0; i < Math.ceil(lenghtOfArray/2); i++){
+		console.log("array before :" + array);
+		buff = array[i];
+		array[i] = array[lenghtOfArray - 1 - i];
+		array[lenghtOfArray - 1 - i] = buff;
+		console.log("array after:" + array);
+	}
+	document.getElementById('butt2').innerHTML = array;
+	return array;
+}
+</script>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<p>put the array that was separatet by space</p>
+<input type="text" name="firts argument" id="fst">
+<br>
+	<button onclick="reverseArray(document.getElementById('fst').value)" id = "butt">reverseArray</button>
+<br>
+<button onclick="reverseArrayInHold(document.getElementById('fst').value)" id = "butt2">reverseArrayInHold</button>
+</body>
+</html>
