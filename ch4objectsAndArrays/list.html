@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript">
+var array = [];
+function addItemToList(previous, valueToList){
+	var list = {value: valueToList, rest: previous};
+	return list;
+}
+function arrayToList(text){
+	var array = text.split(" ");
+	var lenghtOfArray = array.length;
+	var list = {value: array[lenghtOfArray - 1], rest: null};
+	console.log(array);
+	console.log(array.length);
+	for (var i = lenghtOfArray - 2; i >= 0; i--){
+		list = addItemToList(list, array[i]);
+		console.log(list);
+	}
+	document.getElementById('butt').innerHTML = "answer in console";
+	return list;
+}
+function returnListFromArray(list){
+	listToArray(list);
+	document.getElementById('butt2').innerHTML = array;
+	return array;
+}
+function listToArray(list){
+	if (list.value != null){
+		array.push(list.value);
+	}
+	if (list.rest != null){
+		listToArray(list.rest);
+	}
+
+}
+
+function nth (list, element){
+	if (element == 0){
+		document.getElementById('butt3').innerHTML = list.value;
+		return list.value;
+	}
+	if (list.rest == null){
+		document.getElementById('butt3').innerHTML = undefined;
+		return undefined;
+	}
+	nth(list.rest, element-1);
+}
+</script>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<p>put the array that was separatet by space</p>
+<input type="text" name="firts argument" id="fst">
+<input type="number" name="number of list" id="num">
+<br>
+	<button onclick="arrayToList(document.getElementById('fst').value)" id = "butt">array to list</button>
+<br>
+<button onclick="returnListFromArray(arrayToList(document.getElementById('fst').value))" id = "butt2">list to array</button>
+<br>
+<button onclick="nth(arrayToList(document.getElementById('fst').value), document.getElementById('num').value)" id = "butt3">nth of 1 element </button>
+</body>
+</html>
