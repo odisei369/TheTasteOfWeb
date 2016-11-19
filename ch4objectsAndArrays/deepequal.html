@@ -1,0 +1,51 @@
+!<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+    // Your code here.
+
+var obj = {here: {is: "an"}, object: 2};
+//console.log(deepEqual(2, 2));
+//console.log(deepEqual(obj, obj));
+// → true
+console.log(deepEqual(obj, {here: 1, object: 2}));
+// → false
+console.log(deepEqual(obj, {here: {is: "an", ola: 2}, object: 2}));
+// → true
+
+function deepEqual(obj1, obj2) {
+  if (obj1 == obj2) return true;
+  var count1 = 0, count2 = 0;
+  console.log(obj1);
+  console.log(obj2);
+  for (var variable in obj1) {
+    count1++;
+  }
+  for (var variable in obj2) {
+    count2++;
+  }
+  console.log(count1+"  " + count2);
+  if (count1 != count2) return false;
+  for (var variable in obj) {
+    if (obj2[variable]) {
+      console.log("obj 2 has " + variable);
+      if (typeof obj2[variable] == "object" && typeof obj1[variable] == "object" && obj1[variable] != null && obj1[variable] != null)
+      {
+        return deepEqual(obj1[variable], obj2[variable]);
+      }else {
+        return obj1[variable] === obj2[variable];
+      }
+    }else {
+      return false;
+    }
+  }
+
+}
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
