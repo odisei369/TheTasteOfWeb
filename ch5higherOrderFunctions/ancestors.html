@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <script type="text/javascript" src="ANCESTRY_FILE.json"></script>
+    <script type="text/javascript">
+      var mydata = JSON.parse(ANCESTRY_FILE);
+      console.log(mydata);
+      function filter(array, test)
+      {
+        var passed = [];
+        for (var i = 0; i < array.length; i++) {
+          if (test(array[i]))
+          passed.push(array[i]);
+        }
+        return passed;
+      }
+      console.log(filter(mydata, function(person)
+      {
+        return person.born > 1900 && person.born < 1925;
+      }));
+    </script>
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
