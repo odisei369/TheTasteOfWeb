@@ -5,62 +5,41 @@
     <script type="text/javascript">
       var ancestorList = JSON.parse(ANCESTRY_FILE);
 
-      console.log(ancestorList.map(byCentLive));
-      var sorted = sortByCent(ancestorList.map(byCentLive));
-      console.log(sorted);
-      console.log(StringifyAverage(AverageByCent(sorted)));
-      console.log(ancestorList);
-      console.log(groupBy(ancestorList, firstLetter));
+      function groupBy(array, groupOf) {
+        var groups = {};
+        array.forEach(function(element) {
+          var groupName = groupOf(element);
 
-      function firstLetter(person)
+          if (groupName in groups) {
+            groups[groupName].push(element);
+          }
+          else {
+            groups[groupName] = [element];
+          }
+        });
+        return groups;
+      }
+      var byFirstLetter = groupBy(ancestorList, function(person) {
+        return person.name.charAt(0);
+      })
+      var byCentury = groupBy(ancestorList, function(person) {
+        return Math.ceil(person.died / 100);
+      })
+      console.log(byCentury);
+      console.log(byFirstLetter);
+      for (var century in byCentury)
       {
-        return person["sex"];
-      }
-
-      function groupBy(array, funct) {
-        var arrayNew = [];
-        array.forEach(function(element, index) {
-          arrayNew.push[funct(element)];
-        });
-
-        return arrayNew;
-      }
-
-      function byCentLive(person) {
-        return [Math.ceil(person.died / 100), person.died-person.born];
-      }
-
-      function sortByCent(centAge) {
-        var arrayNew = [];
-        centAge.forEach(function(element) {
-          arrayNew[element[0]] = [];
-        });
-        centAge.forEach(function(element) {
-          arrayNew[element[0]].push(element[1]);
-        });
-        return arrayNew;
-      }
-
-      function AverageByCent(sortedArray) {
-        var averageArray = [];
-          sortedArray.forEach(function(element, index) {
-            averageArray[index] = average(element);
-          });
-          return averageArray;
-      }
-
-      function StringifyAverage(averageArray) {
-        var string = '';
-        averageArray.forEach(function(element, index) {
-          string += index + " : " + element + "\n";
+        var ages = byCentury[century].map(function(person) {
+          return person.died - person.born;
         })
-        return string;
+        console.log(century + ": " + average(ages));
       }
 
       function average(array) {
         function plus(a, b) { return a + b; }
         return array.reduce(plus) / array.length;
       }
+
     </script>
     <meta charset="utf-8">
     <title></title>
