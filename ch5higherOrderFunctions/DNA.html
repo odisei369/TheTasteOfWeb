@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script type="text/javascript" src="ANCESTRY_FILE.json"></script>
     <script type="text/javascript">
-      var ancestorList = JSON.parse(ANCESTRY_FILE);
+      var ancestry = JSON.parse(ANCESTRY_FILE);
       var byName = {};
       ancestry.forEach(function(person) {
         byName[person.name] = person;
