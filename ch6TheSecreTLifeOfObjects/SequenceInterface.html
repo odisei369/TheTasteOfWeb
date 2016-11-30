@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+      function Sequence(){}
+      Sequence.prototype.next = function(){}
+      Sequence.prototype.current = function(){}
+
+      function logFive(Sequence)
+      {
+        var five = 5;
+        while (Sequence.next() && five !=0) {
+          console.log(Sequence.current());
+          five--;
+        }
+      }
+
+      function ArraySeq(array)
+      {
+        this.state = -1;
+        this.array = array;
+      }
+      ArraySeq.prototype.next = function () {
+        this.state++;
+        if (this.array[this.state])
+        {
+          return true;
+        }else {
+          return false;
+        }
+      }
+      ArraySeq.prototype.current = function ()
+      {
+        return this.array[this.state];
+      }
+
+      function RangeSeq(first, last)
+      {
+        this.first = first;
+        this.last = last;
+      }
+      RangeSeq.prototype.next = function () {
+        if (this.first <= this.last)
+        {
+        return true;
+        }
+        return false;
+      }
+
+      RangeSeq.prototype.current = function ()
+      {
+        return this.first++;
+      }
+
+
+      logFive(new ArraySeq([1, 2]));
+      // → 1
+      // → 2
+      logFive(new RangeSeq(100, 107));
+      // → 100
+      // → 101
+      // → 102
+      // → 103
+      // → 104
+
+    </script>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
