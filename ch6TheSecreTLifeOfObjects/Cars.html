@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+      var car = {};
+      car.beep = function (line) {
+        console.log("The car says '" + line + "'");
+      };
+      car.beep("I'm alive.");
+      function speak(line) {
+        console.log("The " + this.type + " rabbit says '" + line + "'");
+      };
+      var whiteCar = {type: "white", speak: speak};
+      var fatCar = {type: "fat", speak: speak};
+      speak.apply(fatCar, ["Burp!"]);
+      speak.call({type: "old"}, "Oh my.");
+
+      var empty = {};
+      console.log(empty.toString);
+
+      console.log(empty.toString());
+
+       console.log(Object.getPrototypeOf({}) == Object.prototype);
+
+       console.log(Object.getPrototypeOf(Object.prototype));
+
+       console.log(Object.getPrototypeOf(isNaN) == Function.prototype);
+
+       console.log(Object.getPrototypeOf([]) == Array.prototype);
+
+       var protoCar = {
+         speak : function(line) {
+           console.log("The " + this.type + " car says '" + line + "'");
+         }
+       };
+       var killerCar = Object.create(protoCar);
+       killerCar.type = "killer";
+       killerCar.speak("SKREEEE");
+
+      function Car(type)
+      {
+        this.type = type;
+      }
+
+      var killerCar = new Car("killer");
+      var blackCar = new Car ("black");
+      console.log(blackCar.type);
+
+      Car.prototype.speak = function(line)
+      {
+        console.log("The " + this.type + " car says '" + line + "'");
+      };
+      blackCar.speak("Doom...");
+
+      Car.prototype.wheels = "small";
+      console.log(killerCar.wheels);
+
+      killerCar.wheels = "big";
+      console.log(killerCar.wheels);
+      console.log(blackCar.wheels);
+      console.log(Car.prototype.wheels);
+
+      console.log(Array.prototype.toString ==
+                  Object.prototype.toString);
+      console.log([1,2].toString);
+      console.log(Object.prototype.toString.call([1, 2]));
+
+      Object.prototype.nonsense = "hi";
+      for (var name in map) {
+        console.log(name);
+      };
+      console.log("nonsense" in map);
+      console.log("toString" in map);
+      delete Object.prototype.nonsense;
+
+      Object.defineProperty(Object.prototype, "hiddenNonsense",
+                            {enumerable: false, value: "hi"});
+
+      for (var name in map) {
+        console.log(name);
+      }
+      console.log(map.hiddenNonsense);
+
+      var map = Object.create(null);
+      map["pizza"] = 0.069;
+      console.log("toString" in map);
+      // → false
+      console.log("pizza" in map);
+      // → true
+
+    </script>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
