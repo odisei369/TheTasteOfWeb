@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    /* Defines a cleaner look for tables */
+    table  { border-collapse: collapse; }
+    td, th { border: 1px solid black; padding: 3px 8px; }
+    th     { text-align: left; }
+</style>
+
+<script src="mountains.js"></script>
+<script>
+    function buildTable(data) {
+        var table = document.createElement("table");
+        var trtd = document.createElement("tr");
+        table.appendChild(trtd);
+        for(var param in data[0]){
+            var th = document.createElement("th");
+            th.appendChild(document.createTextNode(param));
+            trtd.appendChild(th);
+        }
+        return table;
+    }
+    console.log(MOUNTAINS);
+    document.body.appendChild(buildTable(MOUNTAINS));
+</script>
+</body>
+</html>
