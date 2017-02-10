@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    .cr{
+        height: 50px;
+        color: red;
+    }
+</style>
+<div id="wrapper">
+    <div data-tabname="one">Tab one</div>
+    <div data-tabname="two">Tab two</div>
+    <div data-tabname="three">Tab three</div>
+</div>
+<script>
+    function asTabs(node) {
+        var tabs = document.body.getElementsByTagName("div");
+        console.log(tabs);
+        Array.prototype.forEach.call(tabs, function(tab) {
+            if (tab.getAttribute("data-tabname")) {
+                var button = document.createElement("button");
+                var text = document.createTextNode(tab.getAttribute("data-tabname"));
+                button.appendChild(text);
+                //buttont clck event--------------------
+                button.addEventListener("click", function (event) {
+                    console.log(event.target.textContent);
+                    var buttons = document.getElementsByTagName("button");
+                    Array.prototype.forEach.call(buttons, function (button) {
+                        console.log(button);
+                        button.className = "";
+                    });
+                    Array.prototype.forEach.call(tabs, function(tab) {
+                        if(tab.getAttribute("data-tabname") == event.target.textContent){
+                            tab.style.display = "block";
+                            event.target.className = "cr";
+                        }else{
+                            if (tab.getAttribute("data-tabname")){
+                            tab.style.display = "none";
+                            }
+                        }
+                    });
+                });
+                //end of button click event ------------------------
+                node.insertBefore(button, node.getElementsByTagName("div")[0]);
+            }
+        });
+        var button = node.getElementsByTagName("button")[0];
+        button.click();
+    }
+    asTabs(document.querySelector("#wrapper"));
+</script>
+
+</body>
+</html>
