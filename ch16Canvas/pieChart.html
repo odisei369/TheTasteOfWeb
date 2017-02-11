@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas width="600" height="300"></canvas>
+<script>
+    var results = [
+        {name: "Satisfied", count: 1043, color: "lightblue"},
+        {name: "Neutral", count: 563, color: "lightgreen"},
+        {name: "Unsatisfied", count: 510, color: "pink"},
+        {name: "No comment", count: 175, color: "silver"}
+    ];
+    var cx = document.querySelector("canvas").getContext("2d");
+    var total = results.reduce(function(sum, choice) {
+        return sum + choice.count;
+    }, 0);
+
+    var currentAngle = -0.5 * Math.PI;
+    var centerX = 300, centerY = 150;
+    // Add code to draw the slice labels in this loop.
+    results.forEach(function(result) {
+        var sliceAngle = (result.count / total) * 2 * Math.PI;
+        cx.beginPath();
+        cx.arc(centerX, centerY, 100,
+            currentAngle, currentAngle + sliceAngle);
+        cx.lineTo(centerX, centerY);
+        cx.fillStyle = result.color;
+        cx.fill();
+        var textX = Math.cos(currentAngle+(sliceAngle/2));
+        console.log(textX);
+        if(textX > 0){cx.textAlign="left";}else{cx.textAlign="right";}
+        var textY = Math.sin(currentAngle+(sliceAngle/2));
+        console.log(textX);
+        cx.fillText(result.name,centerX+textX*120,centerY+textY*120);
+        currentAngle += sliceAngle;
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas width="600" height="200"></canvas>
+<script>
+    var cx = document.querySelector("canvas").getContext("2d");
+
+    cx.save();
+
+    cx.beginPath();
+    cx.lineWidth="1";
+    cx.strokeStyle="black";
+    cx.moveTo(10,50);
+    cx.lineTo(30,20);
+    cx.lineTo(50,20);
+    cx.lineTo(70,50);
+    cx.closePath();
+    cx.stroke();
+
+    cx.translate(120,10);
+    cx.rotate(Math.PI/4);
+    cx.fillStyle = "red";
+    cx.fillRect(0, 0, 40, 40);
+    cx.restore();
+    cx.translate(180, 10);
+    cx.beginPath();
+    for(var i = 0; i< 10; i++)
+    {
+        cx.lineTo(0, 10+i*10);
+        cx.lineTo(40, 15+i*10);
+    }
+    cx.stroke();
+    cx.restore();
+    cx.translate(100,20);
+    cx.beginPath();
+    for(var i = 0; i<100; i++)
+    {
+        cx.lineTo(5+i*0.2,0);
+        cx.rotate(Math.PI/20);
+    }
+    cx.stroke();
+    cx.restore();
+
+    cx.translate(-100,0);
+    cx.beginPath();
+    cx.fillStyle = "yellow";
+    for(var i = 0; i < 8; i++)
+    {
+
+        cx.moveTo(40, 0);
+        // control=(60,10) goal=(90,90)
+        cx.rotate(Math.PI*2/8);
+        cx.quadraticCurveTo(0, 0, 40, 0);
+        cx.lineTo(0,0);
+        cx.fill();
+    }
+
+</script>
+</body>
+</html>

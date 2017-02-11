@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas width="400" height="400"></canvas>
+<script>
+    var cx = document.querySelector("canvas").getContext("2d");
+
+    var lastTime = null;
+    function frame(time) {
+        if (lastTime != null)
+            updateAnimation(Math.min(100, time - lastTime) / 1000);
+        lastTime = time;
+        requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+    var xCoord=40, yCoord=30;
+    var xSpeed=100;
+    var ySpeed=60;
+    var radius = 20;
+    function updateAnimation(step) {
+        cx.clearRect(0, 0, 400, 400);
+        cx.strokeStyle = "blue";
+        cx.strokeRect(0, 0, 400, 400);
+        xCoord+= xSpeed*step;
+        yCoord+= ySpeed*step;
+        if(xCoord+radius>400 || xCoord-radius<0){xSpeed=-xSpeed;}
+        if(yCoord+radius>400 || yCoord-radius<0){ySpeed=-ySpeed;}
+        cx.beginPath();
+        cx.arc(xCoord,yCoord, radius, 0, 7);
+        cx.fill();
+    }
+</script>
+</body>
+</html>
