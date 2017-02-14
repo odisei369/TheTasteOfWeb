@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<textarea id="code">return "hi";</textarea>
+<button id="button">Run</button>
+<pre id="output"></pre>
+
+<script>
+    var code = document.querySelector("#code");
+    var button = document.querySelector("#button");
+    button.addEventListener("click", function(){
+        console.log(new Function("", code.value)());
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var req = new XMLHttpRequest();
+    function get(url, accept)
+    {
+        req.open("GET", url, false);
+        req.setRequestHeader("Accept", accept);
+        req.send(null);
+        return req.responseText;
+    }
+    console.log(get("http://eloquentjavascript.net/author", "text/plain"));
+    console.log(get("http://eloquentjavascript.net/author", "text/html"));
+    console.log(get("http://eloquentjavascript.net/author", "application/json"));
+    console.log(get("http://eloquentjavascript.net/author", "application/rainbows+unicorns"));
+</script>
+</body>
+</html>
