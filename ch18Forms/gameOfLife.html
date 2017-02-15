@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="grid"></div>
+<button id="next">Next generation</button>
+
+<script>
+    var grid = document.querySelector("#grid");
+    function initialize(height, width){
+        var array = [];
+        for (var a = 0; a < height; a++){
+            var arLine = [];
+            var line = document.createElement("div");
+            for(var b = 0; b < width; b++){
+                var chBox = document.createElement("input");
+                chBox.setAttribute("type", "checkbox");
+                if(Math.random() > 0.5){
+                    chBox.checked = true;
+                }
+
+                line.appendChild(chBox);
+                arLine.push(chBox);
+            }
+            grid.appendChild(line);
+            array.push(arLine);
+        }
+        return array;
+    }
+    var array = initialize(10,10);
+    console.log(array);
+
+</script>
+</body>
+</html>
