@@ -9,29 +9,61 @@
 <button id="next">Next generation</button>
 
 <script>
+    var neighbours = [[-1,-1],[-1,0],[-1,1],
+                        [0,-1],      [0,1],
+                        [1,-1],[1,0],[1,1]];
     var grid = document.querySelector("#grid");
-    function initialize(height, width){
+    function initialize(height, width, prevArray){
         var array = [];
+        if(prevArray){
+            grid.removeChild(grid.firstElementChild);
+        }
+        var wraper = document.createElement("div");
         for (var a = 0; a < height; a++){
             var arLine = [];
             var line = document.createElement("div");
             for(var b = 0; b < width; b++){
                 var chBox = document.createElement("input");
                 chBox.setAttribute("type", "checkbox");
-                if(Math.random() > 0.5){
-                    chBox.checked = true;
+                if(!prevArray){
+                    if(Math.random() > 0.7){
+                        chBox.checked = true;
+                    }
+
+                }else{
+                    var count = 0;
+                    neighbours.forEach(function (neighbour) {
+                        if(prevArray[a+neighbour[0]] && prevArray[a+neighbour[0]][b+neighbour[1]]){
+                            var cBox = prevArray[a+neighbour[0]][b+neighbour[1]];
+                            if (cBox && cBox.checked){
+                                count++;
+                            }
+                        }
+                    })
+                    if(count == 3){
+                        chBox.checked = true;
+                    }
+                    if(count == 2 && prevArray[a][b].checked){
+                        chBox.checked=true;
+                    }
                 }
 
                 line.appendChild(chBox);
                 arLine.push(chBox);
             }
-            grid.appendChild(line);
+            wraper.appendChild(line);
             array.push(arLine);
         }
+        grid.appendChild(wraper);
         return array;
     }
-    var array = initialize(10,10);
-    console.log(array);
+    var width = 30;
+    var height = 20;
+    var array = initialize(height,width);
+    var button = document.querySelector("#next");
+    button.addEventListener("click", function (event) {
+        array = initialize(height,width,array);
+    });
 
 </script>
 </body>

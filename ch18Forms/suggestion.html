@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="field">
+<div id="suggestions" style="cursor: pointer"></div>
+
+<script>
+    // Builds up an array with global variable names, like
+    // 'alert', 'document', and 'scrollTo'
+    var terms = [];
+    for (var name in window)
+        terms.push(name);
+
+    var sug = document.querySelector("#suggestions");
+    var field = document.querySelector("#field");
+    field.addEventListener("input", function (event) {
+        var a = field.value;
+        console.log(a);
+        changeSug(a);
+    });
+    var changeSug = function (string) {
+        removeSug();
+        var regExp = new RegExp('^' + string);
+        terms.forEach(function(term){
+            if (regExp.exec(term)){
+            var elem = document.createElement("div");
+            var text = document.createTextNode(term);
+            elem.appendChild(text);
+            elem.addEventListener("click", function (event) {
+                field.value = event.target.textContent;
+                removeSug();
+            });
+            sug.appendChild(elem);}});
+    };
+    var removeSug = function () {
+        while(sug.firstElementChild != null){
+            sug.removeChild(sug.firstElementChild);
+        }
+    };
+    // Your code here.
+</script>
+</body>
+</html>

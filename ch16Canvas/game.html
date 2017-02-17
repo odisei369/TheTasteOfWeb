@@ -7,6 +7,7 @@
 <body>
 <canvas width="400" height="400"></canvas>
 <script>
+    var canvas = document.querySelector("canvas");
     var cx = document.querySelector("canvas").getContext("2d");
 
     var lastTime = null;
@@ -17,15 +18,26 @@
         requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
-        document.addEventListener("mousemove", function (event) {
-            xSpeed=(event.pageX-xCoord)/10;
-            ySpeed= (event.pageY-yCoord)/10;
-            console.log(xSpeed);
-        });
     var xCoord=40, yCoord=30;
     var xSpeed=100;
     var ySpeed=60;
     var radius = 20;
+    var mouseX, mouseY;
+    var currentAngle = 0;
+    var angleSpeed=Math.PI/8;
+    var angle;
+
+    canvas.addEventListener("mousemove", function (event) {
+        mouseX = event.pageX-200;
+        mouseY = event.pageY-200;
+        var a = Math.sqrt(mouseX*mouseX+mouseY*mouseY);
+        var ab = mouseX;
+        var b = 1;
+        var cosA = ab/(a*b);
+        angle = Math.acos(cosA);
+        if(mouseY > 0){angle = 2*Math.PI-angle;};
+        //console.log(angle);
+    });
     function updateAnimation(step) {
         cx.clearRect(0, 0, 400, 400);
         cx.strokeStyle = "blue";
@@ -37,6 +49,21 @@
         cx.beginPath();
         cx.arc(xCoord,yCoord, radius, 0, 7);
         cx.fill();
+        cx.lineWidth="1";
+        cx.beginPath();
+        cx.moveTo(200,200);
+        if (angle - currentAngle < Math.PI)
+        {
+            currentAngle += step*angleSpeed;
+            console.log(currentAngle);
+        }else{
+            currentAngle -= step*angleSpeed;
+        }
+        var x = Math.cos(currentAngle)*100+200;
+        var y = -Math.sin(currentAngle)*100+200;
+        //console.log(x, " ", y);
+        cx.lineTo(x,y);
+        cx.stroke();
     }
 </script>
 </body>
